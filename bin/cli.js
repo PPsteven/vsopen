@@ -21,13 +21,25 @@ program
       console.log('\x1b[32m%s\x1b[0m', '点击下方链接跳转打开本地 VS Code:');
       console.log(url);
 
-      // Open URL (dynamic import for ESM package)
-      const open = (await import('open')).default;
-      await open(url);
+      // Open URL
+      try {
+        const open = (await import('open')).default;
+        await open(url);
+      } catch (openError) {
+        console.error('Error: failed to open VS Code');
+        console.error('Please copy the URL above and open it manually.');
+        process.exit(1);
+      }
     } catch (error) {
       console.error(`Error: ${error.message}`);
       process.exit(1);
     }
   });
+
+// Custom error handling for missing file argument
+if (process.argv.length < 3) {
+  console.error('Error: file path is required');
+  program.help();
+}
 
 program.parse();
