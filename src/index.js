@@ -70,6 +70,14 @@ function getIpAddress() {
  * @returns {string} VS Code URL
  */
 function generateVsCodeUrl(filePath, alias = null) {
+  // Input validation
+  if (!filePath) {
+    throw new Error('filePath parameter is required');
+  }
+  if (typeof filePath !== 'string') {
+    throw new Error('filePath must be a string');
+  }
+
   // Resolve to absolute path
   const absolutePath = path.resolve(filePath);
 
@@ -81,8 +89,11 @@ function generateVsCodeUrl(filePath, alias = null) {
   // Get host info
   const hostInfo = getHostInfo(alias);
 
+  // URL encode each path segment
+  const encodedPath = absolutePath.split('/').map(encodeURIComponent).join('/');
+
   // Generate VS Code URL
-  const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${absolutePath}`;
+  const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${encodedPath}`;
 
   return url;
 }
