@@ -1,5 +1,7 @@
 const os = require('os');
 const { execSync } = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 /**
  * Get the host information (username@ip or alias)
@@ -61,7 +63,32 @@ function getIpAddress() {
   return os.hostname();
 }
 
+/**
+ * Generate VS Code remote SSH URL
+ * @param {string} filePath - File path to open
+ * @param {string|null} alias - Optional alias for host
+ * @returns {string} VS Code URL
+ */
+function generateVsCodeUrl(filePath, alias = null) {
+  // Resolve to absolute path
+  const absolutePath = path.resolve(filePath);
+
+  // Check if file exists
+  if (!fs.existsSync(absolutePath)) {
+    throw new Error(`File not found: ${absolutePath}`);
+  }
+
+  // Get host info
+  const hostInfo = getHostInfo(alias);
+
+  // Generate VS Code URL
+  const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${absolutePath}`;
+
+  return url;
+}
+
 module.exports = {
   getHostInfo,
-  getIpAddress
+  getIpAddress,
+  generateVsCodeUrl
 };
