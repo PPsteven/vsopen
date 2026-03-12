@@ -90,7 +90,7 @@ function generateVsCodeUrl(filePath, alias = null) {
   const hostInfo = getHostInfo(alias);
 
   // URL encode each path segment
-  const encodedPath = absolutePath.split('/').map(encodeURIComponent).join('/');
+  const encodedPath = absolutePath.split(path.sep).map(encodeURIComponent).join('/');
 
   // Generate VS Code URL
   const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${encodedPath}`;
