@@ -36,10 +36,4 @@ program
     }
   });
 
-// Custom error handling for missing file argument
-if (process.argv.length < 3) {
-  console.error('Error: file path is required');
-  program.help();
-}
-
 program.parse();
