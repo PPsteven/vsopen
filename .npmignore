@@ -1,0 +1,6 @@
+.git/
+.vscode/
+*.log
+test.txt
+test.js
+docs/

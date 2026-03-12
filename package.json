@@ -6,6 +6,11 @@
   "bin": {
     "vsopen": "./bin/cli.js"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,10 +19,19 @@
     "remote",
     "ssh",
     "cli",
-    "developer-tools"
+    "developer-tools",
+    "url-generator"
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/vsopen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/vsopen/issues"
+  },
+  "homepage": "https://github.com/yourusername/vsopen#readme",
   "engines": {
     "node": ">=20"
   },
