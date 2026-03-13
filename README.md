@@ -46,17 +46,17 @@ vsopen <file>
 ```bash
 $ vsopen ./test.js
 点击下方链接跳转打开本地 VS Code:
-vscode://vscode-remote/ssh-remote+ppsteven@192.168.1.100/Users/ppsteven/projects/test.js
+vscode://vscode-remote/ssh-remote+ppsteven@192.168.1.100/Users/ppsteven/projects/test.js:1
 ```
 
-Opens VS Code automatically with the file.
+Opens VS Code automatically at line 1.
 
 ### With Alias Flag
 
 ```bash
 $ vsopen --alias mini ./test.js
 点击下方链接跳转打开本地 VS Code:
-vscode://vscode-remote/ssh-remote+mini/Users/ppsteven/projects/test.js
+vscode://vscode-remote/ssh-remote+mini/Users/ppsteven/projects/test.js:1
 ```
 
 ### With Environment Variable
@@ -65,7 +65,7 @@ vscode://vscode-remote/ssh-remote+mini/Users/ppsteven/projects/test.js
 $ export VSOPEN_ALIAS=mini
 $ vsopen ./test.js
 点击下方链接跳转打开本地 VS Code:
-vscode://vscode-remote/ssh-remote+mini/Users/ppsteven/projects/test.js
+vscode://vscode-remote/ssh-remote+mini/Users/ppsteven/projects/test.js:1
 ```
 
 ### Absolute Paths
@@ -90,9 +90,11 @@ All paths are automatically resolved to absolute paths.
 
 1. Resolves the file path to an absolute path
 2. Detects your username and IP address (or uses provided alias)
-3. Generates a VS Code remote SSH URL: `vscode://vscode-remote/ssh-remote+{host}{path}`
-4. Prints the URL to stdout
-5. Automatically opens the URL in VS Code
+3. Determines if the path is a file or directory
+4. Generates a VS Code remote SSH URL: `vscode://vscode-remote/ssh-remote+{host}{path}`
+5. For files, appends `:1` to open at the first line
+6. Prints the URL to stdout
+7. Automatically opens the URL in VS Code
 
 ## Requirements
 
