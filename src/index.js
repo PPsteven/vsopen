@@ -81,13 +81,19 @@ function generateVsCodeUrl(filePath, alias = null) {
   // Resolve to absolute path
   const absolutePath = path.resolve(filePath);
 
-  // Check if file exists
-  if (!fs.existsSync(absolutePath)) {
-    throw new Error(`File not found: ${absolutePath}`);
+  // Check if file/directory exists and get stats
+  let stats;
+  try {
+    stats = fs.statSync(absolutePath);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      throw new Error(`File not found: ${absolutePath}`);
+    }
+    throw err;
   }
 
   // Check if path is a file (not directory)
-  const isFile = fs.statSync(absolutePath).isFile();
+  const isFile = stats.isFile();
 
   // Get host info
   const hostInfo = getHostInfo(alias);
