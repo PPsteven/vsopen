@@ -86,14 +86,17 @@ function generateVsCodeUrl(filePath, alias = null) {
     throw new Error(`File not found: ${absolutePath}`);
   }
 
+  // Check if path is a file (not directory)
+  const isFile = fs.statSync(absolutePath).isFile();
+
   // Get host info
   const hostInfo = getHostInfo(alias);
 
   // URL encode each path segment
   const encodedPath = absolutePath.split(path.sep).map(encodeURIComponent).join('/');
 
-  // Generate VS Code URL
-  const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${encodedPath}`;
+  // Generate VS Code URL with line number for files
+  const url = `vscode://vscode-remote/ssh-remote+${hostInfo}${encodedPath}${isFile ? ':1' : ''}`;
 
   return url;
 }
