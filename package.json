@@ -1,10 +1,10 @@
 {
-  "name": "vsopen",
+  "name": "@ppsteven/vsopen",
   "version": "1.0.0",
   "description": "Generate and open VS Code remote SSH URLs for local files",
   "main": "src/index.js",
   "bin": {
-    "vsopen": "./bin/cli.js"
+    "vsopen": "bin/cli.js"
   },
   "files": [
     "bin/",
