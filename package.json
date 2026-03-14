@@ -22,16 +22,16 @@
     "developer-tools",
     "url-generator"
   ],
-  "author": "",
+  "author": "ppsteven",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/vsopen.git"
+    "url": "git+https://github.com/PPsteven/vsopen.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/vsopen/issues"
+    "url": "https://github.com/PPsteven/vsopen/issues"
   },
-  "homepage": "https://github.com/yourusername/vsopen#readme",
+  "homepage": "https://github.com/PPsteven/vsopen#readme",
   "engines": {
     "node": ">=20"
   },
