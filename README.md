@@ -7,7 +7,7 @@ Generate and open VS Code remote SSH URLs for local files.
 Install globally via npm:
 
 ```bash
-npm install -g vsopen
+npm install -g @ppsteven/vsopen
 ```
 
 Or use directly with npx (no installation required):
